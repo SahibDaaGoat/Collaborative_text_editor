@@ -1,10 +1,46 @@
 {
-  "name": "${PROJECT_NAME}",
+  "name": "collaborative-text-editor",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "tsx apps/server/src/index.ts",
+    "dev:web": "next dev apps/web",
+    "build": "npm run build:crdt && npm run build:protocol && npm run build:database && npm run build:server && npm run build:web",
+    "build:crdt": "tsc -p packages/crdt/tsconfig.json",
+    "build:protocol": "tsc -p packages/protocol/tsconfig.json",
+    "build:database": "tsc -p packages/database/tsconfig.json",
+    "build:server": "tsc -p apps/server/tsconfig.json",
+    "build:web": "next build apps/web",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "next lint apps/web"
   },
-  "private": true
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@tiptap/extension-placeholder": "^2.11.5",
+    "@tiptap/extension-text-style": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "next": "^14.2.16",
+    "pg": "^8.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/ws": "^8.5.13",
+    "concurrently": "^9.1.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.16",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
 }

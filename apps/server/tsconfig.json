@@ -1,0 +1,1 @@
+{"extends":"../../tsconfig.json","compilerOptions":{"outDir":"dist","rootDir":"src","declaration":true,"paths":{"@collab/crdt":["../../packages/crdt/dist"],"@collab/protocol":["../../packages/protocol/dist"],"@collab/database":["../../packages/database/dist"]}},"include":["src/**/*.ts"]}

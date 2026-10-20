@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "jsx": "preserve",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@collab/crdt": ["packages/crdt/src"],
+      "@collab/protocol": ["packages/protocol/src"],
+      "@collab/database": ["packages/database/src"]
+    }
+  }
+}
